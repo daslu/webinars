@@ -1,6 +1,6 @@
 # webinar1
 
-![imaged](doc/2020-04-23-002547_2880x1920_scrot.png)
+![imaged](doc/2020-04-23-002921_2880x1920_scrot.png)
 
 ## License
 
