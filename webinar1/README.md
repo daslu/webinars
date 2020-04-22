@@ -1,8 +1,6 @@
 # webinar1
 
-## Usage
-
-FIXME
+[doc/2020-04-23-002547_2880x1920_scrot.png]
 
 ## License
 
