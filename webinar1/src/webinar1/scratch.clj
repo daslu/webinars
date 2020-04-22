@@ -12,10 +12,7 @@
 
 (defonce oz (oz/start-server!))
 
-;; https://www.kaggle.com/c/house-prices-advanced-regression-techniques
 
-(defonce ames-raw-dataset
-  (ds/->dataset "/workspace/data/ames/train.csv"))
 
 (defn rng
   "Initialize and warm a ranrom number generator."
@@ -29,6 +26,10 @@
   (binding [gen/*rnd* (rng seed)]
     (gen/shuffle data)))
 
+;; https://www.kaggle.com/c/house-prices-advanced-regression-techniques
+(defonce ames-raw-dataset
+  (ds/->dataset "/workspace/data/ames/train.csv"))
+
 (def ames-dataset
   (->> ames-raw-dataset
        ds/column-names
@@ -37,15 +38,13 @@
        (ds/rename-columns
         ames-raw-dataset)))
 
-(def relevant-columns
-  [:GrLivArea :SalePrice :BedroomAbvGr])
+(def relevant-columns [:GrLivArea :SalePrice :BedroomAbvGr])
 
 (def ames-rows
   (->> ames-dataset
        ds/mapseq-reader
        (shuffle-with-seed 1)
-       (map (fn [row]
-              (select-keys row relevant-columns)))
+       (map #(select-keys % relevant-columns))
        (take 1000)))
 
 (def plot1
