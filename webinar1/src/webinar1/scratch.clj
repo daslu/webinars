@@ -48,9 +48,6 @@
               (select-keys row relevant-columns)))
        (take 1000)))
 
-(->> ames-rows
-     (take 9))
-
 (def plot1
   {:encoding
    {:y {:field :SalePrice, :type "quantitative"},
@@ -64,8 +61,6 @@
    :height 300
    :data {:values ames-rows}})
 
-(oz/view! plot1)
-
 (def plot2
   (-> plot1
       (assoc-in [:encoding :color]
@@ -74,8 +69,6 @@
       (update-in [:encoding :tooltip]
                  conj {:field :BedroomAbvGr
                        :type  :nominal})))
-
-(oz/view! plot3)
 
 (oz/view!
  [:div
